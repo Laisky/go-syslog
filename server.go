@@ -4,13 +4,14 @@ import (
 	"bufio"
 	"crypto/tls"
 	"errors"
-	"fmt"
 	"net"
 	"strings"
 	"sync"
 	"time"
 
 	"github.com/Laisky/go-syslog/format"
+	"github.com/Laisky/go-utils"
+	"go.uber.org/zap"
 )
 
 var (
@@ -346,10 +347,11 @@ func (s *Server) goReceiveDatagrams(packetconn net.PacketConn, cfg *BLBCfg) {
 					if cfg != nil {
 						if string(buf) == cfg.SYN {
 							if _, err := packetconn.WriteTo(cfg.ACK, addr); err != nil {
-								fmt.Printf("echo to BLB got error: %+v", err)
+								utils.Logger.Error("echo to BLB got error", zap.Error(err))
 								continue
 							}
-							fmt.Println("success echo to BLB")
+							utils.Logger.Debug("success echo to BLB")
+							continue
 						}
 					}
 
