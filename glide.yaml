@@ -1,0 +1,4 @@
+package: github.com/Laisky/go-syslog
+import: []
+testImport:
+- package: gopkg.in/check.v1

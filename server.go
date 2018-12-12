@@ -4,12 +4,13 @@ import (
 	"bufio"
 	"crypto/tls"
 	"errors"
+	"fmt"
 	"net"
 	"strings"
 	"sync"
 	"time"
 
-	"gopkg.in/mcuadros/go-syslog.v2/format"
+	"github.com/Laisky/go-syslog/format"
 )
 
 var (
@@ -145,7 +146,7 @@ func (s *Server) ListenTCPTLS(addr string, config *tls.Config) error {
 }
 
 //Starts the server, all the go routines goes to live
-func (s *Server) Boot() error {
+func (s *Server) Boot(cfg *BLBCfg) error {
 	if s.format == nil {
 		return errors.New("please set a valid format")
 	}
@@ -163,7 +164,7 @@ func (s *Server) Boot() error {
 	}
 
 	for _, connection := range s.connections {
-		s.goReceiveDatagrams(connection)
+		s.goReceiveDatagrams(connection, cfg)
 	}
 
 	return nil
@@ -320,7 +321,12 @@ type DatagramMessage struct {
 	client  string
 }
 
-func (s *Server) goReceiveDatagrams(packetconn net.PacketConn) {
+type BLBCfg struct {
+	SYN string
+	ACK []byte
+}
+
+func (s *Server) goReceiveDatagrams(packetconn net.PacketConn, cfg *BLBCfg) {
 	s.wait.Add(1)
 	go func() {
 		defer s.wait.Done()
@@ -336,6 +342,17 @@ func (s *Server) goReceiveDatagrams(packetconn net.PacketConn) {
 					if addr != nil {
 						address = addr.String()
 					}
+
+					if cfg != nil {
+						if string(buf) == cfg.SYN {
+							if _, err := packetconn.WriteTo(cfg.ACK, addr); err != nil {
+								fmt.Printf("echo to BLB got error: %+v", err)
+								continue
+							}
+							fmt.Println("success echo to BLB")
+						}
+					}
+
 					s.datagramChannel <- DatagramMessage{buf[:n], address}
 				}
 			} else {
