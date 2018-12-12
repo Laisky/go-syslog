@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"gopkg.in/mcuadros/go-syslog.v2/format"
+	"github.com/Laisky/go-syslog/format"
 )
 
 type noopFormatter struct{}
@@ -77,7 +77,7 @@ func BenchmarkDatagramNoFormatting(b *testing.B) {
 	server.SetFormat(noopFormatter{})
 	server.SetHandler(handler)
 	reader, writer := io.Pipe()
-	server.goReceiveDatagrams(&fakePacketConn{PipeReader: reader})
+	server.goReceiveDatagrams(&fakePacketConn{PipeReader: reader}, nil)
 	server.goParseDatagrams()
 	msg := []byte(exampleSyslog + "\n")
 	b.SetBytes(int64(len(msg)))
@@ -94,7 +94,7 @@ func BenchmarkTCPNoFormatting(b *testing.B) {
 	server.SetFormat(noopFormatter{})
 	server.SetHandler(handler)
 	server.ListenTCP("127.0.0.1:0")
-	server.Boot()
+	server.Boot(nil)
 	conn, _ := net.DialTimeout("tcp", server.listeners[0].Addr().String(), time.Second)
 	msg := []byte(exampleSyslog + "\n")
 	b.SetBytes(int64(len(msg)))

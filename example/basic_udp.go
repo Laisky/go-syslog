@@ -3,7 +3,7 @@ package main
 import (
 	"fmt"
 
-	"gopkg.in/mcuadros/go-syslog.v2"
+	"github.com/Laisky/go-syslog"
 )
 
 func main() {
@@ -16,7 +16,7 @@ func main() {
 	server.ListenUDP("0.0.0.0:514")
 	server.ListenTCP("0.0.0.0:514")
 
-	server.Boot()
+	server.Boot(nil)
 
 	go func(channel syslog.LogPartsChannel) {
 		for logParts := range channel {

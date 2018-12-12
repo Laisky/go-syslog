@@ -1,0 +1,10 @@
+hash: d1d90e10e67206747f6886608b1c6d17c62417754ba8be24f552c470252c5f0d
+updated: 2018-12-11T18:14:16.271652+08:00
+imports: []
+testImports:
+- name: github.com/kr/pretty
+  version: 73f6ac0b30a98e433b289500d779f50c1a6f0712
+- name: github.com/kr/text
+  version: e2ffdb16a802fe2bb95e2e35ff34f0e53aeef34f
+- name: gopkg.in/check.v1
+  version: 788fd78401277ebd861206a03c884797c6ec5541

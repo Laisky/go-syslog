@@ -7,8 +7,8 @@ import (
 	"testing"
 	"time"
 
+	"github.com/Laisky/go-syslog/format"
 	. "gopkg.in/check.v1"
-	"gopkg.in/mcuadros/go-syslog.v2/format"
 )
 
 func Test(t *testing.T) { TestingT(t) }
@@ -40,7 +40,7 @@ func (s *ServerSuite) TestTailFile(c *C) {
 		server.Kill()
 	}(server)
 
-	server.Boot()
+	server.Boot(nil)
 	server.Wait()
 
 	c.Check(handler.LastLogParts["hostname"], Equals, "hostname")
@@ -292,7 +292,7 @@ func (s *ServerSuite) TestUDPRace(c *C) {
 	server.SetHandler(handler)
 	server.SetTimeout(10)
 	server.ListenUDP("127.0.0.1:0")
-	server.Boot()
+	server.Boot(nil)
 	conn, err := net.Dial("udp", server.connections[0].LocalAddr().String())
 	c.Assert(err, IsNil)
 	_, err = conn.Write([]byte(exampleSyslog + "1"))
@@ -313,7 +313,7 @@ func (s *ServerSuite) TestTCPRace(c *C) {
 	server.SetHandler(handler)
 	server.SetTimeout(10)
 	server.ListenTCP("127.0.0.1:0")
-	server.Boot()
+	server.Boot(nil)
 	conn, err := net.Dial("tcp", server.listeners[0].Addr().String())
 	c.Assert(err, IsNil)
 	_, err = conn.Write([]byte(exampleSyslog + "1\n"))
