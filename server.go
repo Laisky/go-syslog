@@ -345,7 +345,7 @@ func (s *Server) goReceiveDatagrams(packetconn net.PacketConn, cfg *BLBCfg) {
 					}
 
 					if cfg != nil {
-						if string(buf) == cfg.SYN {
+						if string(buf[:n]) == cfg.SYN {
 							if _, err := packetconn.WriteTo(cfg.ACK, addr); err != nil {
 								utils.Logger.Error("echo to BLB got error", zap.Error(err))
 								continue
