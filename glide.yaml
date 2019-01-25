@@ -1,6 +1,6 @@
 package: github.com/Laisky/go-syslog
 import:
 - package: github.com/Laisky/go-utils
-  version: ~0.7
+  version: ~0.8
 testImport:
 - package: gopkg.in/check.v1

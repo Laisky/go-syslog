@@ -11,7 +11,7 @@ import (
 
 	"github.com/Laisky/go-syslog/format"
 	"github.com/Laisky/go-utils"
-	"go.uber.org/zap"
+	"github.com/Laisky/zap"
 )
 
 var (

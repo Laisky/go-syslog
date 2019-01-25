@@ -1,8 +1,73 @@
-hash: 35a22beddcb2e1580014a8e3e1fe281bf802e511423592651d2c7df40111b0d1
-updated: 2018-12-12T11:05:54.644639+08:00
+hash: 07825222a9ffd4a106d61d311635d7bec7ae165ec638b6f1e7e7df2b107c66ac
+updated: 2019-01-25T14:58:08.417483+08:00
 imports:
+- name: github.com/dgrijalva/jwt-go
+  version: 06ea1031745cb8b3dab3f6a236daf2b0aa468b7e
+- name: github.com/fsnotify/fsnotify
+  version: c2828203cd70a50dcccfb2761f8b1f8ceef9a8e9
+- name: github.com/hashicorp/hcl
+  version: ef8a98b0bbce4a65b5aa4c368430a80ddc533168
+  subpackages:
+  - hcl/ast
+  - hcl/parser
+  - hcl/printer
+  - hcl/scanner
+  - hcl/strconv
+  - hcl/token
+  - json/parser
+  - json/scanner
+  - json/token
+- name: github.com/Laisky/go-chaining
+  version: 43dcdc5a21be9b79f2b7ee0d8ba67ed8a7158cda
 - name: github.com/Laisky/go-utils
-  version: 7b8d9e0c463fbbc60044e7fd45d291ca9d5ee98b
+  version: 454a9803409d650a667c77b82ec1bbe8399e34b2
+- name: github.com/Laisky/zap
+  version: 5c0138de209f397ae93319e22ec1923008cc5767
+  subpackages:
+  - buffer
+  - internal/bufferpool
+  - internal/color
+  - internal/exit
+  - zapcore
+- name: github.com/magiconair/properties
+  version: c2353362d570a7bfa228149c62842019201cfb71
+- name: github.com/mitchellh/mapstructure
+  version: bb74f1db0675b241733089d5a1faa5dd8b0ef57b
+- name: github.com/pelletier/go-toml
+  version: c01d1270ff3e442a8a57cddc1c92dc1138598194
+- name: github.com/pkg/errors
+  version: ba968bfe8b2f7e042a574c888954fccecfa385b4
+- name: github.com/spf13/afero
+  version: 787d034dfe70e44075ccc060d346146ef53270ad
+  subpackages:
+  - mem
+- name: github.com/spf13/cast
+  version: 8965335b8c7107321228e3e3702cab9832751bac
+- name: github.com/spf13/jwalterweatherman
+  version: 7c0cea34c8ece3fbeb2b27ab9b59511d360fb394
+- name: github.com/spf13/pflag
+  version: 298182f68c66c05229eb03ac171abe6e309ee79a
+- name: github.com/spf13/viper
+  version: f69c91abd383f6e61b17df94c1020943eefe0349
+- name: go.uber.org/atomic
+  version: 1ea20fb1cbb1cc08cbd0d913a96dead89aa18289
+- name: go.uber.org/multierr
+  version: 3c4937480c32f4c13a875a1829af76c98ca3d40a
+- name: golang.org/x/sys
+  version: bff228c7b664c5fce602223a05fb708fd8654986
+  subpackages:
+  - unix
+- name: golang.org/x/text
+  version: 5c1cf69b5978e5a34c5f9ba09a83e56acc4b7877
+  subpackages:
+  - transform
+  - unicode/norm
+- name: gopkg.in/alexcesaro/quotedprintable.v3
+  version: 2caba252f4dc53eaf6b553000885530023f54623
+- name: gopkg.in/gomail.v2
+  version: 81ebce5c23dfd25c6c67194b37d3dd3f338c98b1
+- name: gopkg.in/yaml.v2
+  version: 5420a8b6744d3b0345ab293f6fcba19c978f1183
 testImports:
 - name: github.com/kr/pretty
   version: 73f6ac0b30a98e433b289500d779f50c1a6f0712
